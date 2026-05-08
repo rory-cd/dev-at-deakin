@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import 'highlight.js/styles/vs2015.css';
+
+:root {
+  /* System (light) */
+  --text-primary: #24242f;
+  --text-secondary: rgb(171, 174, 196);
+  --text-tertiary: #7b7d91;
+  --background-front: #333545;
+  --background-front-50: rgba(51, 53, 69, 0.5);
+  --background-mid: #2d2e3b;
+  --background-back: #ffffff;
+  --clr-primary: rgb(88, 188, 175);
+  --clr-primary-dark: rgb(59, 176, 160);
+  --clr-secondary: #682387;
+  --clr-secondary-dark: #521b6b;
+  --clr-secondary-light: #701e96;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* System (dark) */
+    --text-primary: #ffffff;
+    --text-secondary: rgb(171, 174, 196);
+    --text-tertiary: #7b7d91;
+    --background-front: #333545;
+    --background-front-50: rgba(51, 53, 69, 0.5);
+    --background-mid: #2d2e3b;
+    --background-back: #24242f;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-oswald);
+  --font-sans: var(--font-source-sans);
+  --font-mono: var(--font-source-code);
+
+  --color-bg-back: var(--background-back);
+  --color-bg-mid: var(--background-mid);
+  --color-bg-front: var(--background-front);
+  --color-bg-front-50: var(--background-front-50);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-on-colour: #ffffff;
+}
+
+html.light {
+  --text-primary: #24242f;
+  --text-secondary: rgb(127, 139, 158);
+  --text-tertiary: rgb(171, 182, 199);
+  --background-front: rgb(232, 236, 244);
+  --background-front-50: rgba(232, 236, 244, 0.5);
+  --background-mid: rgb(244, 246, 250);
+  --background-back: #ffffff;
+  --clr-primary: rgb(88, 188, 175);
+  --clr-primary-dark: rgb(59, 176, 160);
+  --clr-secondary: #682387;
+  --clr-secondary-dark: #521b6b;
+  --clr-secondary-light: #701e96;
+}
+
+html.dark {
+  --text-primary: #ffffff;
+  --text-secondary: rgb(171, 174, 196);
+  --text-tertiary: #7b7d91;
+  --background-front: #333545;
+  --background-front-50: rgba(51, 53, 69, 0.5);
+  --background-mid: #2d2e3b;
+  --background-back: #24242f;
+}
+
+body {
+  background: var(--background-back);
+  color: var(--text-primary);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.react-datepicker__input-container input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.text-link {
+  color: var(--clr-primary);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Editor styles */
+.tiptap {
+  p.is-editor-empty:first-child::before {
+    color: var(--text-tertiary);
+    content: attr(data-placeholder);
+    float: left;
+    margin-top: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  @apply min-h-100 px-4 py-3 focus:outline-none z-0;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  h5 {
+    font-size: 1.35rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  p code {
+    font-family: var(--font-mono);
+    color: var(--color-indigo-300);
+    font-size: 0.9rem;
+    background-color: var(--background-back);
+    border-radius: 3px;
+    padding: 0.4em 0.3em;
+  }
+
+  hr {
+    margin: 1rem 0;
+    color: var(--text-tertiary);
+  }
+
+  /* List styles */
+  li p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  li::marker {
+    color: var(--text-secondary);
+  }
+
+  ul {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    list-style-type: disc;
+  }
+
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    list-style-type: decimal;
+  }
+
+  /* Quotes */
+  blockquote {
+    border-left: 4px solid var(--clr-primary);
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    margin: 1rem 0;
+    font-style: italic;
+  }
+
+  /* Code blocks */
+  pre {
+    background-color: var(--background-back);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+}
+
+.tt-toolbar {
+  @apply z-40 ps-3 p-1 w-full flex flex-row flex-wrap bg-(--background-back) sticky top-0;
+
+  button {
+    @apply flex mx-1 my-2 justify-center items-center rounded-sm p-1; 
+    background-color: var(--background-back);
+  }
+
+  button:hover {
+    background-color: var(--background-front);
+  }
+
+  .is-active {
+    color: var(--clr-bg-dark);
+    background-color: var(--clr-primary);
+  }
+
+  .is-active:hover {
+    color: var(--clr-bg-dark);
+    background-color: var(--clr-primary-dark);
+  }
+}
+
+::selection {
+  background: var(--clr-primary);
+  color: white;
+}
+
+/* Applied to any container elements which shouldn't go too wide.*/
+.container-center {
+  @apply container mx-auto px-4 sm:px-8 self-start;
+}
+
+.mid-dark-v-gradient {
+  @apply bg-gradient-to-t from-(--background-back) from-10% to-(--background-mid) to-90%
+}
+
+.mid-light-v-gradient {
+  @apply bg-gradient-to-t from-(--background-front) from-10% to-(--background-mid) to-90%
+}
+
+.form-disabled {
+  @apply pointer-events-none opacity-60
+}
