@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DEV@Deakin Web Application
 
-## Getting Started
+## Overview
+This project is a peer support platform for Deakin students, built with **React**, **Next.js**, and **Firebase**. It demonstrates advanced front-end concepts such as **Streaming SSR with Suspense**, **Server Components**, and custom state management. 
 
-First, run the development server:
+The platform allows users to post questions and articles, engage in discussions through a comment system, and utilize AI assistance for technical troubleshooting.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
+* **Dynamic Questions & Filtering**: A refactored architecture using Next.js dynamic routes and search params to fetch filtered content directly on the server.
+* **AI Integration (Premium)**: Side-by-side AI consulting powered by **Gemini** via the Firebase API. Conversations are context-aware and stored in Firestore for persistent history.
+* **Advanced Discussion System**: Supports profile pictures, likes, and editing timestamps.
+* **Responsive UI with Theme Support**: Fully implemented **Light/Dark mode** utilizing Tailwind CSS's theme configurations and CSS variables.
+* **Premium Subscription Model**: Includes a custom-built modal system implemented with **React Portals** to escape DOM boundaries for a cleaner overlay architecture.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technical Details
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Framework**: Next.js (React)
+* **Styling**: Tailwind CSS
+* **Backend & Auth**: Firebase
+* **Database**: Cloud Firestore
+* **AI Engine**: Gemini
+* **Validation**: Zod
+* **Deployment**: Netlify
 
-## Learn More
+### Performance
+The app leverages **React Suspense** to improve perceived performance. By wrapping heavy data-fetching components in Suspense boundaries, the app can stream chunks of the page from the server and display fallback skeletons while content loads.
 
-To learn more about Next.js, take a look at the following resources:
+### Custom State Management
+* **`useForm` Hook**: A custom-developed hook created to standardize repetitive form-style state management and validation patterns.
+* **`UserContext` with Reducer**: Manages client-side authentication state using a `useReducer` and `Context` API, with Firebase serving as the single source of truth.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Validation & Security
+* **Zod Integration**: Implements a clean, schema-based client-side validation system. A parent `UserSchema` is utilized to derive smaller, specific schemas for login, signup, and password resets.
+* **Auth Guards**: Higher-order client components that protect private routes and manage post-login redirects.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Installation & Setup
+1. **Clone the repository**:
+   ```bash
+   git clone [https://github.com/Rory-CD/SIT313-full-stack-frontend.git](https://github.com/Rory-CD/SIT313-full-stack-frontend.git)
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Configure Environment Variables**:
+   Create a `.env.local` file with your Firebase and Gemini API credentials.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
